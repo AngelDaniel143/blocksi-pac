@@ -1,0 +1,21 @@
+function FindProxyForURL(url, host) {
+    // List of Blocksi domains to block
+    var blocksiDomains = [
+        "blocksi.com",
+        "blocksi.net",
+        "www.blocksi.com",
+        "www.blocksi.net",
+        "app.blocksi.com",
+        "support.blocksi.com",
+        "dashboard.blocksi.com"
+    ];
+
+    // Loop through Blocksi domains and block them
+    for (var i = 0; i < blocksiDomains.length; i++) {
+        if (host.indexOf(blocksiDomains[i]) !== -1) {
+            return "PROXY 127.0.0.1:8118"; // Block by routing to a local proxy or empty proxy
+        }
+    }
+    
+    return "DIRECT"; // All other traffic should go directly
+}
